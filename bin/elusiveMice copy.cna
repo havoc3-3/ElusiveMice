@@ -97,7 +97,7 @@ sub generate_my_dll {
 	# ---------------------------------------------------------------------
 	$temp_dll = setup_reflective_loader($2, $loader);
 
-	$temp_dll = pe_set_string($temp_dll, 0, "AYAQ");
+	$temp_dll = pe_set_string($temp_dll, 0, "V1AQ");
 	$temp_dll = shellcode_strrep($temp_dll);
 	
 
